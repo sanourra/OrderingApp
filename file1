@@ -1,0 +1,109 @@
+import java.awt.*;
+import java.awt.event.*;
+
+import javax.swing.*;
+public class GUIMenu implements ActionListener //listens for clicks on certain menu items
+{
+	private JFrame frame; 
+	public static void main (String[] args)
+	{
+		GUIMenu gui = new GUIMenu();
+		gui.start();
+	}
+	public void start()
+	{
+		frame = new JFrame("GUI Menus"); //creates frame for app
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Container contentPane = frame.getContentPane();
+		
+		makeMenus();
+		frame.setSize(300, 300);
+		frame.setVisible(true);
+	}
+	private void makeMenus()
+	{
+		JMenuBar menuBar;
+		JMenu menu;
+		JMenuItem menuItem;
+		
+		menuBar = new JMenuBar();
+		frame.setJMenuBar(menuBar);
+		
+		//set up the file Menu
+		menu = new JMenu("File");
+        menuBar.add(menu);
+        
+        //add file menu items below
+        menuItem = new JMenuItem("New");
+        menuItem.addActionListener(this);
+		menu.add(menuItem);
+		menuItem = new JMenuItem("Open");
+		menuItem.addActionListener(this);
+		menu.add(menuItem);
+		menuItem = new JMenuItem("Save");
+		menuItem.addActionListener(this);
+		menu.add(menuItem);
+		menuItem = new JMenuItem("Save As");
+		menuItem.addActionListener(this);
+		menu.add(menuItem);
+		menu.addSeparator();
+		menuItem = new JMenuItem("Exit");
+		menuItem.addActionListener(this);
+		menu.add(menuItem);
+	}
+	
+	public void actionPerformed(ActionEvent e)
+	{
+	  // tells the program which methods to use, depending on which menu item is clicked.
+		if (e.getActionCommand().equals("New")) 
+			newMethod();
+		else if (e.getActionCommand().equals("Open"))
+			openMethod();
+		else if (e.getActionCommand().equals("Save"))
+			saveMethod();
+		else if (e.getActionCommand().equals("Save As"))
+			saveAsMethod();
+		else if (e.getActionCommand().equals("Exit")) //no method needed for exit. Simple system exit will suffice.
+			System.exit(0);
+
+	}
+	
+	private void newMethod()
+	{
+	  // tells program to show a dialog box, telling user the New option was clicked
+		JOptionPane.showMessageDialog(frame, 
+				"The File > New menu option was clicked.",
+				"Menu Item Click",
+				JOptionPane.INFORMATION_MESSAGE);
+		
+	}
+	
+	private void openMethod()
+	{
+	  // tells program to show a dialog box, telling user the Open option was clicked
+		JOptionPane.showMessageDialog(frame,
+		  "The File > Open menu option was clicked.",
+		  "Menu Item Click",
+		  JOptionPane.INFORMATION_MESSAGE);
+	}
+	
+	private void saveMethod()
+	{
+	  // tells program to show a dialog box, telling user the Save option was clicked
+		JOptionPane.showMessageDialog(frame, 
+				"The File > Save menu option was clicked",
+				"Menu Item Click",
+				JOptionPane.INFORMATION_MESSAGE);
+
+	}
+	
+	private void saveAsMethod()
+	{
+	  // tells program to show a dialog box, telling user the Save As option was clicked
+		JOptionPane.showMessageDialog(frame, 
+				"The File > Save As menu option was clicked",
+				"Menu Item Click",
+				JOptionPane.INFORMATION_MESSAGE);
+
+	}
+}
