@@ -1,0 +1,107 @@
+import java.awt.*;
+import java.awt.event.*;
+
+import javax.swing.*;
+public class GUIMenu
+{
+	private JFrame frame;
+	public static void main (String[] args)
+	{
+		GUIMenu gui = new GUIMenu();
+		gui.start();
+	}
+	public void start()
+	{
+		frame = new JFrame("GUI Menus");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		Container contentPane = frame.getContentPane();
+		
+		makeMenus();
+		frame.setSize(300, 300);
+		frame.setVisible(true);
+	}
+	private void makeMenus()
+	{
+		JMenuBar menuBar;
+		JMenu menu;
+		JMenuItem menuItem;
+		
+		menuBar = new JMenuBar();
+		frame.setJMenuBar(menuBar);
+		
+		//set up the file Menu
+		menu = new JMenu("File");
+        menuBar.add(menu);
+        
+        //add file menu items below
+        menuItem = new JMenuItem("New");
+        menuItem.addActionListener(new newListener());
+		menu.add(menuItem);
+		menuItem = new JMenuItem("Open");
+		menuItem.addActionListener(new openListener());
+		menu.add(menuItem);
+		menuItem = new JMenuItem("Save");
+		menuItem.addActionListener(new saveListener());
+		menu.add(menuItem);
+		menuItem = new JMenuItem("Save As");
+		menuItem.addActionListener(new saveAsListener());
+		menu.add(menuItem);
+		menu.addSeparator();
+		menuItem = new JMenuItem("Exit");
+		menuItem.addActionListener(new exitListener());
+		menu.add(menuItem);
+	}
+	
+	
+	private class newListener implements ActionListener //program listens for click on New menu option
+	{
+		public void actionPerformed(ActionEvent e)
+		{
+			JOptionPane.showMessageDialog(frame, 
+				"The File > New menu option was clicked.",
+				"Menu Item Click",
+				JOptionPane.INFORMATION_MESSAGE);
+		}
+	}
+	
+	private class openListener implements ActionListener //program listens for click on Open menu option
+	{
+		public void actionPerformed(ActionEvent e)
+		{
+			JOptionPane.showMessageDialog(frame,
+					"The File > Open menu option was clicked.",
+					"Menu Item Click",
+					JOptionPane.INFORMATION_MESSAGE);
+		}
+	}
+		
+	private class saveListener implements ActionListener //program listens for click on Save menu option
+	{
+		public void actionPerformed(ActionEvent e)
+		{
+			JOptionPane.showMessageDialog(frame, 
+					"The File > Save menu option was clicked",
+					"Menu Item Click",
+					JOptionPane.INFORMATION_MESSAGE);
+		}
+	}
+	
+	private class saveAsListener implements ActionListener //program listens for click on Save As menu option
+	{
+		public void actionPerformed(ActionEvent e)
+		{
+			JOptionPane.showMessageDialog(frame, 
+					"The File > Save As menu option was clicked",
+					"Menu Item Click",
+					JOptionPane.INFORMATION_MESSAGE);
+		}
+	}
+	
+	private class exitListener implements ActionListener 
+	{
+		public void actionPerformed(ActionEvent e)
+		{
+			System.exit(0); //does not return with dialog box, but exits program
+		}
+	}
+}
